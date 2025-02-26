@@ -1,0 +1,8 @@
+<h1><%= message || 'Something went wrong!' %></h1>
+<h2><%= error?.status || 500 %></h2>
+
+<% if (error?.stack) { %>
+    <pre><%= error.stack %></pre>
+<% } else { %>
+    <p>No additional error information available.</p>
+<% } %>

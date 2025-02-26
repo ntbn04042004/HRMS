@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" href="/stylesheets/login.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 15px;
+            color: #fff;
+            background-color: #4a77d4;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-left: 170px;
+        }
+        .btn:hover {
+            background-color: #3762bc;
+        }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #77bbd4, #2a3a53);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+        .login {
+            width: 400px;
+            padding: 50px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 4px;
+            outline: none;
+        }
+        input[type="email"], input[type="password"] {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        label.error-message {
+            color: red;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="login">
+    <h1>HR Information System</h1>
+    <form action="/login" method="POST" onsubmit="return validate()" autocomplete="off">
+        <!-- CSRF Token phải được truyền đúng cách -->
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        
+        <input type="email" id="email" name="email" placeholder="Enter Email Address" required />
+        <input type="password" id="password" name="password" placeholder="Enter Password" required />
+        <button type="submit" class="btn btn-block">Login</button>
+
+        <!-- Hiển thị thông báo lỗi một cách chính xác -->
+        <% if (hasErrors && Array.isArray(messages)) { %>
+            <% messages.forEach(function(item, index) { %>
+                <label class="error-message" id="message-<%= index %>"><%= item %></label>
+                <% }) %>
+        <% } %>
+    </form>
+</div>
+
+<script>
+    function validate() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const messageElements = document.querySelectorAll("[id^='message-']");
+
+        // Kiểm tra các trường input
+        if (!email || !password) {
+            messageElements.forEach(element => {
+                element.textContent = "Please fill out all fields.";
+            });
+            return false;
+        }
+
+        // Xóa thông báo lỗi nếu không có lỗi
+        messageElements.forEach(element => {
+            element.textContent = "";
+        });
+        return true;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+#!/usr/bin/env node
+
+// Import các thư viện cần thiết
+const app = require('../app');
+const debug = require('debug')('hrms:server');
+const http = require('http');
+
+
+/**
+ * Hàm chuẩn hóa port thành số, chuỗi hoặc false
+ */
+function normalizePort(val) {
+    const port = parseInt(val, 10);
+    if (isNaN(port)) return val; // named pipe
+    if (port >= 0) return port; // port number
+    return false;
+}
+
+/**
+ * Lấy port từ môi trường hoặc sử dụng mặc định là 3000
+ */
+const port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+/**
+ * Tạo HTTP server
+ */
+const server = http.createServer(app);
+
+/**
+ * Lắng nghe trên port được cung cấp, trên mọi giao diện mạng
+ */
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+
+/**
+ * Sự kiện "error" của server HTTP
+ */
+function onError(error) {
+    if (error.syscall !== 'listen') {
+        throw error;
+    }
+
+    const bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
+
+    // Xử lý các lỗi cụ thể khi listen
+    switch (error.code) {
+        case 'EACCES':
+            console.error(bind + ' requires elevated privileges');
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            console.error(bind + ' is already in use');
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
+}
+
+/**
+ * Sự kiện "listening" của server HTTP
+ */
+function onListening() {
+    const addr = server.address();
+    const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+    console.log(`Server is running at http://localhost:${port} in ${process.env.NODE_ENV || 'development'} mode`);
+    debug('Listening on ' + bind);
+}
+
+/**
+ * Xử lý khi nhận được tín hiệu tắt server
+ */
+process.on('SIGINT', () => {
+    console.log('Shutting down server...');
+    server.close(() => {
+        console.log('Server closed gracefully');
+        process.exit(0);
+    });
+});
+
