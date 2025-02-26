@@ -16,16 +16,7 @@ router.use('/', isLoggedIn, function checkAuthentication(req, res, next) {
     next();
 });
 
-/**
- * Description:
- * Displays home to the manager
- *
- * Author: Salman Nizam
- *
- * Last Updated: 30th November, 2016
- *
- * Known Bugs: None
- */
+ //Displays home to the manager
 
 router.get('/', function viewHomePage(req, res, next) {
 
@@ -44,12 +35,6 @@ router.get('/', function viewHomePage(req, res, next) {
  * In case of accounts manager checks if user has entry in UserSalary Schema.
  * Then it enters the data in UserSalary Schema if user is not present.
  * Otherwise gets the data from UserSalary Schema and shows the salary of the employees to the accounts manager
- *
- * Author: Salman Nizam
- *
- * Last Updated: 30th November, 2016
- *
- * Known Bugs: None
  */
 
 router.get('/view-employees', function viewEmployees(req, res) {
@@ -139,14 +124,7 @@ router.get('/view-employees', function viewEmployees(req, res) {
 });
 
 /**
- * Description:
  * Displays All the skills of the employee to the project manager.
- *
- * Author: Salman Nizam
- *
- * Last Updated: 30th November, 2016
- *
- * Known Bugs: None
  */
 
 router.get('/all-employee-skills/:id', function viewAllEmployeeSkills(req, res, next) {
@@ -170,12 +148,6 @@ router.get('/all-employee-skills/:id', function viewAllEmployeeSkills(req, res, 
 /**
  * Description:
  * Displays all the projects of the employee to the project manager
- *
- * Author: Hassan Qureshi
- *
- * Last Updated: 30th November, 2016
- *
- * Known Bugs: None
  */
 
 router.get('/all-employee-projects/:id', function viewAllEmployeeProjects(req, res, next) {
@@ -212,12 +184,6 @@ router.get('/all-employee-projects/:id', function viewAllEmployeeProjects(req, r
 /**
  * Description:
  * Displays employee project information to the project manager
- *
- * Author: Salman Nizam
- *
- * Last Updated: 30th November, 2016
- *
- * Known Bugs: None
  */
 
 router.get('/employee-project-info/:id', function viewEmployeeProjectInfo(req, res, next) {
@@ -249,12 +215,6 @@ router.get('/employee-project-info/:id', function viewEmployeeProjectInfo(req, r
 /**
  * Description:
  * Displays the performance appraisal form for the employee to the project manager.
- *
- * Author: Salman Nizam
- *
- * Last Updated: 30th November, 2016
- *
- * Known Bugs: None
  */
 
 router.get('/provide-performance-appraisal/:id', function providePerformanceAppraisal(req, res, next) {
@@ -302,12 +262,6 @@ router.get('/provide-performance-appraisal/:id', function providePerformanceAppr
 /**
  * Description:
  * Displays currently marked attendance to the manager.
- *
- * Author: Hassan Qureshi
- *
- * Last Updated: 30th November, 2016
- *
- * Known Bugs: None
  */
 
 router.get('/view-attendance-current', function viewCurrentMarkedAttendance(req, res, next) {
@@ -341,12 +295,6 @@ router.get('/view-attendance-current', function viewCurrentMarkedAttendance(req,
 /**
  * Description:
  * Displays leave application form for the manager to apply for leave
- *
- * Author: Salman Nizam
- *
- * Last Updated: 30th November, 2016
- *
- * Known Bugs: None
  */
 
 router.get('/apply-for-leave', function applyForLeave(req, res, next) {
@@ -361,12 +309,6 @@ router.get('/apply-for-leave', function applyForLeave(req, res, next) {
 /**
  * Description:
  * Manager gets the list of all his/her applied leaves.
- *
- * Author: Salman Nizam
- *
- * Last Updated: 30th November, 2016
- *
- * Known Bugs: None
  */
 
 router.get('/applied-leaves', function appliedLeaves(req, res, next) {
@@ -398,12 +340,6 @@ router.get('/applied-leaves', function appliedLeaves(req, res, next) {
 /**
  * Description:
  * Displays logged in manager his/her profile.
- *
- * Author: Hassan Qureshi
- *
- * Last Updated: 30th November, 2016
- *
- * Known Bugs: None
  */
 
 router.get('/view-profile', function viewProfile(req, res, next) {
@@ -428,12 +364,6 @@ router.get('/view-profile', function viewProfile(req, res, next) {
  * Description:
  * Gets the id of the project to be shown form request parameters.
  * Displays the project to the project manager.
- *
- * Author: Hassan Qureshi
- *
- * Last Updated: 30th November, 2016
- *
- * Known Bugs: None
  */
 
 router.get('/view-project/:project_id', function viewProject(req, res, next) {
@@ -459,12 +389,6 @@ router.get('/view-project/:project_id', function viewProject(req, res, next) {
 /**
  * Description:
  * Displays list of all the project managers project.
- *
- * Author: Hassan Qureshi
- *
- * Last Updated: 30th November, 2016 Salman Nizam
- *
- * Known Bugs: None
  */
 
 router.get('/view-all-personal-projects', function viewAllPersonalProjects(req, res, next) {
@@ -495,12 +419,6 @@ router.get('/view-all-personal-projects', function viewAllPersonalProjects(req, 
  * Checks if pay slip has already been generated.
  * If yes then fills the field of the form with current attributes.
  * Then displays the pay slip form for the employee to the project manager.
- *
- * Author: Hassan Qureshi
- *
- * Last Updated: 30th November, 2016
- *
- * Known Bugs: None
  */
 
 router.get('/generate-pay-slip/:employee_id', function generatePaySlip(req, res, next) {
@@ -561,12 +479,6 @@ router.get('/generate-pay-slip/:employee_id', function generatePaySlip(req, res,
  * Description:
  * Reads the parameters from the body of the post request.
  * Then saves the applied leave to the leave schema.
- *
- * Author: Salman Nizam
- *
- * Last Updated: 30th November, 2016
- *
- * Known Bugs: None
  */
 
 router.post('/apply-for-leave', function applyForLeave(req, res, next) {
@@ -593,12 +505,6 @@ router.post('/apply-for-leave', function applyForLeave(req, res, next) {
 /**
  * Description:
  * Sets the bonus of the selected employee in UserSalary Schema
- *
- * Author: Salman Nizam
- *
- * Last Updated: 30th Novemebr, 2016
- *
- * Known Bugs: None
  */
 
 router.post('/set-bonus', function setBonus(req, res) {
@@ -622,12 +528,6 @@ router.post('/set-bonus', function setBonus(req, res) {
 /**
  * Description:
  * Sets the salary of the selected employee in UserSalary Schema
- *
- * Author: Salman Nizam
- *
- * Last Updated: 30th November, 2016
- *
- * Known Bugs: None
  */
 
 router.post('/set-salary', function setSalary(req, res) {
@@ -653,12 +553,6 @@ router.post('/set-salary', function setSalary(req, res) {
 /**
  * Description:
  * Sets the Incremented salary of the selected employee in UserSalary Schema
- *
- * Author: Hassan Qureshi
- *
- * Last Updated: 30th November, 2016
- *
- * Known Bugs: None
  */
 
 router.post('/increment-salary', function incrementSalary(req, res) {
@@ -682,12 +576,6 @@ router.post('/increment-salary', function incrementSalary(req, res) {
 /**
  * Description:
  * Saves the performance appraisal of the employee against the employeeID in the PaySlip Schema.
- *
- * Author: Hassan Qureshi
- *
- * Last Updated: 30th November, 2016
- *
- * Known Bugs: None
  */
 
 router.post('/provide-performance-appraisal', function providePerformanceAppraisal(req, res) {
@@ -715,12 +603,6 @@ router.post('/provide-performance-appraisal', function providePerformanceApprais
 /**
  * Description:
  * Stores the Pay Slip of employee in PaySlip schema if  not already stored
- *
- * Author: Salman Nizam
- *
- * Last Updated: 30th November, 2016
- *
- * Known Bugs: None
  */
 
 router.post('/generate-pay-slip', function generatePaySlip(req, res) {
@@ -749,12 +631,6 @@ router.post('/generate-pay-slip', function generatePaySlip(req, res) {
 /**
  * Description:
  * Displays attendance to the manager for the given year and month.
- *
- * Author: Hassan Qureshi
- *
- * Last Updated: 30th November, 2016
- *
- * Known Bugs: None
  */
 
 router.post('/view-attendance', function viewAttendance(req, res, next) {
@@ -789,12 +665,6 @@ router.post('/view-attendance', function viewAttendance(req, res, next) {
 /**
  * Description:
  * Marks the attendance of the manager in current date
- *
- * Author: Salman Nizam
- *
- * Last Updated: 30th November, 2016
- *
- * Known Bugs: None
  */
 
 router.post('/mark-manager-attendance', function markAttendance(req, res, next) {
